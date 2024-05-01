@@ -1,0 +1,41 @@
+.navbar {
+    height: 48px;
+}
+.navbar-inner {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    width: 100%;
+}
+.bi-person-circle {
+    font-size: 20px;
+}
+.bi-person-circle:before {
+    color: #fff;   
+}
+.user-menu-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    outline: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-menu-button:active,
+.user-menu-button:focus-visible {
+    outline: none;
+}
+.dropdown {
+    position: relative;
+}
+.logout-button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+}
