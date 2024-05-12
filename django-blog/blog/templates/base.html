@@ -3,6 +3,7 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+{% load static %}
 <html>
     <head>
         <meta charset="utf-8">
@@ -11,10 +12,12 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        {% load static %}
+
         <link rel="stylesheet" href="{% static 'blog/normalize.css' %}">
-        {% load static %}
+        <link rel="stylesheet" href="{% static 'blog/home.css' %}">
         <link rel="stylesheet" href="{% static 'blog/header.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/login.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/posts.css' %}">
 
         <!-- Jquery -->
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>        
@@ -30,9 +33,8 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         
-        {% load static %}
         <script src="{% static 'blog/main.js' %}" async defer></script>
-        <main>
+        <main data-bs-theme="light">
             {% block content %}
             {% endblock %}
           </main>

@@ -2,18 +2,24 @@
     height: 48px;
 }
 .navbar-inner {
+    align-items: center;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
+    padding: 0 16px;
     position: relative;
     width: 100%;
 }
 .bi-person-circle {
     font-size: 20px;
 }
-.bi-person-circle:before {
+.bi-person-circle:before,
+.bi-list:before {
     color: #fff;   
 }
-.user-menu-button {
+.dropdown .dropdown-toggle:after {
+    display: none;   
+}
+.menu-button {
     border: none;
     background: none;
     cursor: pointer;
@@ -24,8 +30,8 @@
     align-items: center;
     justify-content: center;
 }
-.user-menu-button:active,
-.user-menu-button:focus-visible {
+.menu-button:active,
+.menu-button:focus-visible {
     outline: none;
 }
 .dropdown {

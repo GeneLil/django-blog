@@ -1,0 +1,14 @@
+{% extends "home.html" %}
+
+{% block authorized_context %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.title.id_for_label }}">Tag title:</label>
+                {{ form.title }}
+            </div>
+            <button class="btn btn-primary" type="submit">Add new tag</button>
+        </form>
+    </div>
+{% endblock %}

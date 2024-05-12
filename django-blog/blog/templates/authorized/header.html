@@ -1,0 +1,27 @@
+<header class="navbar fixed-top navbar-dark bg-dark">
+    <div class="navbar-inner">
+        <div>
+            <div class="dropdown">
+                <button class="menu-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-start" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="/tags">Tags</a>
+                    <a class="dropdown-item" href="/posts">Posts</a>                                        
+                </div> 
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="menu-button dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-person-circle"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="user-profile">User profile</a>
+                <form class="dropdown-item" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="logout-button" type="submit">Log Out</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,13 @@
+html {
+    height: 100%;
+}
+ body, 
+ main {
+    min-height: 100%;
+ }
+ .not-logged-in-page {
+    align-items: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+ }

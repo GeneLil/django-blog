@@ -1,0 +1,17 @@
+{% extends "home.html" %}
+
+{% block authorized_context %}
+    <div class="container posts-container">
+        <div class="post-container">
+            {% for post in posts %}
+                {{ post.title }}
+            {% endfor %}
+        </div>
+    </div>    
+    <div>        
+        Total number of posts: {{ posts|length }}
+        <form method="get" action="/posts/new/">
+            <button class="btn btn-primary" type="submit">Add new post</button>
+        </form>     
+    </div>
+{% endblock %}

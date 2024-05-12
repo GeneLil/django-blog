@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+
+{% block authorized_context %}
+    <div class="container-sm">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.title.id_for_label }}">Title:</label>
+                {{ form.title }}
+                <span class="errorLabel">{{ form.title.errors }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.body.id_for_label }}">Body:</label>
+                {{ form.body }}
+                <span class="errorLabel">{{ form.body.errors }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.image.id_for_label }}">Attach image:</label>
+                {{ form.image }}
+                <span class="errorLabel">{{ form.image.errors }}</span>
+            </div>
+            <div class="mb-3">
+                {% for tag in form.tags %}
+                    <div class="form-check">
+                        {{ tag }}
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-primary" type="submit">Add new post</button>
+        </form>
+        
+    </div>
+{% endblock %}

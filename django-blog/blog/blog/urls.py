@@ -17,12 +17,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic.base import TemplateView
-from .views import articles_view
+from .views import PostsView, NewPostView, TagsView, NewTagView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("articles/", articles_view, name="articles"),
+    path("posts/", PostsView.as_view(), name="posts"),
+    path("posts/new/", NewPostView.as_view(), name="new-post"),
+    path("tags/", TagsView.as_view(), name="tags"),
+    path("tags/new/", NewTagView.as_view(), name="new-tag"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),    
-    path("", TemplateView.as_view(template_name="home.html"), name="home")
+    path("", TemplateView.as_view(template_name="home.html"), name="home"),
 ]
