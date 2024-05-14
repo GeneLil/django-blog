@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput, Textarea, CheckboxSelectMultiple
-from .views import Post, Tag
+from .models import Post, Tag
 
 
 class NewPostForm(ModelForm):

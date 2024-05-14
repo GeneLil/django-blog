@@ -16,16 +16,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
+from django.conf import settings
 from django.views.generic.base import TemplateView
-from .views import PostsView, NewPostView, TagsView, NewTagView
+from .Views.SinglePost import SinglePostView
+from .Views.Posts import PostsView
+from .Views.NewTag import NewTagView
+from .Views.Tags import TagsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("posts/", PostsView.as_view(), name="posts"),
-    path("posts/new/", NewPostView.as_view(), name="new-post"),
+    path("posts/<int:pk>", PostsView.as_view(), name="post-details"),    
+    path("posts/", PostsView.as_view(), name="posts"),    
+    path("posts/new/", SinglePostView.as_view(), name="new-post"),
+    path("like/<int:pk>", SinglePostView.as_view(), name="new-post"),
+    path("posts/<int:pk>/edit", SinglePostView.as_view(), name="edit-post"),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new/", NewTagView.as_view(), name="new-tag"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),    
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,15 @@
 {% extends "home.html" %}
 
 {% block authorized_context %}
-    <div class="container-sm">
+    <div class="posts-header">
+        <a href="/posts">Back to posts</a>
+    </div>
+    <div class="container-sm new-post-container">        
+        {% if isEditing %}
+            <h3>Edit post</h3>    
+        {% else %}
+            <h3>Create new post</h3>
+        {% endif %}        
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="mb-3">
@@ -26,7 +34,13 @@
                     </div>
                 {% endfor %}
             </div>
-            <button class="btn btn-primary" type="submit">Add new post</button>
+            <button class="btn btn-primary" type="submit">
+                {% if isEditing %}  
+                    Update
+                {% else %}
+                    Create
+                {% endif %}
+            </button>
         </form>
         
     </div>

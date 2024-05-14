@@ -1,17 +1,29 @@
 {% extends "home.html" %}
 
 {% block authorized_context %}
+    <div class="posts-header">        
+        <span>Total posts: {{ posts|length }}</span>
+        <form method="get" action="/posts/new/">
+            <button class="btn btn-primary btn-sm" type="submit">Add new post</button>
+        </form>     
+    </div>
     <div class="container posts-container">
         <div class="post-container">
             {% for post in posts %}
-                {{ post.title }}
+                <div class="post-header">
+                    <h3>{{ post.title }}</h3>
+                    <div class="post-author">
+                        <span class="fw-light">written by {{ post.author.username }} on {{ post.created_at }}</span>
+                        {% if post.modified_at %}
+                            <span class="fw-light">modified by {{ post.author.username }} on {{ post.modified_at }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="post-image"><img src="{{ post.image.url }}"></div>
+                <p class="post-short-description">{{ post.short_description }} <a href="/posts/{{ post.id }}">Read more</a></p>                
+                <hr class="post-divider" />                
             {% endfor %}
         </div>
     </div>    
-    <div>        
-        Total number of posts: {{ posts|length }}
-        <form method="get" action="/posts/new/">
-            <button class="btn btn-primary" type="submit">Add new post</button>
-        </form>     
-    </div>
+   
 {% endblock %}

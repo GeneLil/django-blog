@@ -1,14 +1,18 @@
 {% extends "home.html" %}
 
 {% block authorized_context %}
-    <div class="container">
+    <div class="posts-header">
+        <a href="/tags">Back to tags</a>
+    </div>
+    <div class="container tags-container">
+        <h3>Create new tag</h3>
         <form method="post">
             {% csrf_token %}
             <div class="mb-3">
                 <label class="form-label" for="{{ form.title.id_for_label }}">Tag title:</label>
                 {{ form.title }}
             </div>
-            <button class="btn btn-primary" type="submit">Add new tag</button>
+            <button class="btn btn-primary" type="submit">Create</button>
         </form>
     </div>
 {% endblock %}

@@ -1,15 +1,16 @@
 {% extends "home.html" %}
 
 {% block authorized_context %}
-    {% for tag in tags %}
-        <div class="tags-container">
-            <span class="badge text-bg-primary">{{ tag.title }}</span>
-        </div>        
-    {% endfor %}
-    <div>        
-        Total number of tags: {{ tags|length }}
+    <div class="posts-header">        
+        <span>Total tags: {{ tags|length }}</span>
         <form method="get" action="/tags/new/">
-            <button class="btn btn-primary" type="submit">Add new tag</button>
+            <button class="btn btn-primary btn-sm" type="submit">Add new tag</button>
         </form>     
+    </div>
+    <div class="container tags-container">
+        <h3>Tags</h3>
+        {% for tag in tags %}            
+            <span class="badge text-bg-primary">{{ tag.title }}</span>            
+        {% endfor %}    
     </div>
 {% endblock %}
