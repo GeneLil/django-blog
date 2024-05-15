@@ -23,6 +23,7 @@ from .Views.SinglePost import SinglePostView
 from .Views.Posts import PostsView
 from .Views.NewTag import NewTagView
 from .Views.Tags import TagsView
+from .Views.NewComment import NewCommentView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
     path("posts/new/", SinglePostView.as_view(), name="new-post"),
     path("like/<int:pk>", SinglePostView.as_view(), name="new-post"),
     path("posts/<int:pk>/edit", SinglePostView.as_view(), name="edit-post"),
+    path("comments/new/<int:post_id>", NewCommentView.as_view(), name="new-comment"),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new/", NewTagView.as_view(), name="new-tag"),
     path('accounts/', include('accounts.urls')),

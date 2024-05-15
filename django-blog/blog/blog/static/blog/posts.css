@@ -19,22 +19,34 @@
     padding: 12px;
     height: 64px;
 }
-.post-container {
-    display: flex;
-    flex-direction: column;
+.posts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 16px;
     margin-top: 32px;
+    padding: 16px;
 }
 .post-image {        
-    max-width: 240px;
+    height: 240px;
+    width: 240px;
 }
 .post-image img {
     width: 100%;
 }
+.post-details .post-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+}
 .post-author {
     display: flex;
     flex-direction: column;
-    text-align: right;
+    margin-bottom: 8px;
+    text-align: left;
+}
+.post-author span {
+    font-size: 12px;
 }
 .new-post-container,
 .tags-container {

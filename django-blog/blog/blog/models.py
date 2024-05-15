@@ -14,7 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255)
     short_description = models.TextField(blank=True)
     body = models.TextField()
-    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='author')
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='posts')
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now_add=False, null=True)
     image = models.ImageField(upload_to="media")
@@ -29,9 +29,16 @@ class Post(models.Model):
             
     def serialized_liked_by(self):
         users_names = []
-        print("LIKED BY", self.liked_by)
         if self.liked_by is not None:
             for user in self.liked_by.all():
                 users_names.append(user.username)
         return users_names
+            
+
+class Comment(models.Model):
+    
+    author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    created_at = models.DateTimeField(auto_now_add=True)
+    body = models.TextField()
             

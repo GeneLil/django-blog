@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput, Textarea, CheckboxSelectMultiple
-from .models import Post, Tag
+from .models import Post, Tag, Comment
 
 
 class NewPostForm(ModelForm):
@@ -20,3 +20,13 @@ class NewTagForm(ModelForm):
         widgets = {
             'title': TextInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'title'}),         
         }
+        
+
+class NewCommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ['body']
+        widgets = {
+            'body': Textarea(attrs={'class': 'form-control', 'placeholder': '', 'id': 'body'}),
+        }
+        

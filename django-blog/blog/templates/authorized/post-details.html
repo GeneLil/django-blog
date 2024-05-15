@@ -4,7 +4,7 @@
     <div class="posts-header">
         <a href="/posts">Back to posts</a>
     </div>
-    <div class="container">
+    <div class="container post-details">
         <div class="post-container">
             <div class="post-header">
                 <h3>{{ post.title }}</h3>
@@ -34,7 +34,30 @@
                 <button class="like-button" type="submit"><i class="bi bi-star"></i></button>                
             </form>
         </div>
-        
+        {% if is_user_authenticated %}
+            <div class="new-comment-container">
+                <form method="post" action={% url "new-comment" post.id %}>
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label" for="{{ form.title.id_for_label }}">Comment:</label>
+                        {{ add_comment_form.body }}
+                    </div>
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </form>
+            </div>
+        {% endif %}        
+        {% if comments %}
+            <div class="comments-container">
+                {% for comment in comments %}
+                    <div class="comment-entry">
+                        <div class="comment-header">
+                            <h6>{{ comment.author.username }}</h6>
+                            <em>{{ comment.created_at }}</em>
+                        </div>
+                        <div>{{ comment.body }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
     </div>
-    
 {% endblock %}

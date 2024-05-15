@@ -7,7 +7,8 @@ from django.shortcuts import render, redirect
 
 
 class SinglePostView(TemplateView):
-    template_name = 'authorized/new-post.html'
+    new_post_template = 'authorized/new-post.html'
+    edit_post_template = 'authorized/edit-post.html'
     
     @staticmethod
     def make_short_description(body: str):
@@ -43,18 +44,18 @@ class SinglePostView(TemplateView):
         context = {}
         if 'pk' in kwargs:
             post_id = kwargs['pk']
-            post = Post.objects.get(pk=post_id) 
+            post = Post.objects.get(pk=post_id)         
             
             context = {
                 'form': NewPostForm(instance=post),
-                'isEditing': True,
+                'isEditing': True,                
             }
-            return render(request, template_name=self.template_name, context=context)
+            return render(request, template_name=self.edit_post_template, context=context)
         
         context = {
             'form': NewPostForm()
         }
-        return render(request, template_name=self.template_name, context=context)
+        return render(request, template_name=self.new_post_template, context=context)
     
     def post(self, request: HttpRequest, *args, **kwargs):
         if request.user.is_authenticated:

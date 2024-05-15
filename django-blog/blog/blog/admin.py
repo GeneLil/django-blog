@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Tag
+from .models import Post, Tag, Comment
 
 
 @admin.register(Tag)
@@ -19,3 +19,12 @@ class PostAdmin(admin.ModelAdmin):
     class Meta:
         model = Post
         
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    
+    list_display = ['body', 'created_at', 'post', 'author']
+    
+    class Meta:
+        model = Comment
+    
