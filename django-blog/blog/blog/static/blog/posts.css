@@ -22,7 +22,7 @@
 .posts-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 32px;
     margin-top: 32px;
     padding: 16px;
 }
@@ -32,6 +32,9 @@
 }
 .post-image img {
     width: 100%;
+}
+.post-body {
+    margin-bottom: 0;
 }
 .post-details .post-container {
     display: flex;
@@ -69,6 +72,10 @@
 .post-footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+.post-footer p {
+    margin-bottom: 0;
+    text-align: right;
 }
 .post-edit-link {
     text-align: right;

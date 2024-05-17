@@ -24,13 +24,14 @@ from .Views.Posts import PostsView
 from .Views.NewTag import NewTagView
 from .Views.Tags import TagsView
 from .Views.NewComment import NewCommentView
+from .Views.Like import LikeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("posts/<int:pk>", PostsView.as_view(), name="post-details"),    
     path("posts/", PostsView.as_view(), name="posts"),    
     path("posts/new/", SinglePostView.as_view(), name="new-post"),
-    path("like/<int:pk>", SinglePostView.as_view(), name="new-post"),
+    path("like/<int:post_id>", LikeView.as_view(), name="like-post"),
     path("posts/<int:pk>/edit", SinglePostView.as_view(), name="edit-post"),
     path("comments/new/<int:post_id>", NewCommentView.as_view(), name="new-comment"),
     path("tags/", TagsView.as_view(), name="tags"),

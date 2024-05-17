@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Tag, Comment
+from .models import Post, Tag, Comment, Like
 
 
 @admin.register(Tag)
@@ -28,3 +28,11 @@ class CommentAdmin(admin.ModelAdmin):
     class Meta:
         model = Comment
     
+
+@admin.register(Like)
+class LikeAdmin(admin.ModelAdmin):
+    
+    list_display = ['user_id', 'post_id']
+    
+    class Meta:
+        model = Like

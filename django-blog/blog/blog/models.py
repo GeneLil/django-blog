@@ -21,6 +21,9 @@ class Post(models.Model):
     liked_by = models.ManyToManyField(CustomUser, related_name='liked_by')
     tags = models.ManyToManyField(Tag, related_name='tags')
     
+    def __str__(self):
+        return str(self.id)
+    
     def serialized_tags(self):
         tags_names = []
         for tag in self.tags.all():
@@ -42,3 +45,9 @@ class Comment(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     body = models.TextField()
             
+            
+class Like(models.Model):
+    
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='likes')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
+    

@@ -17,7 +17,19 @@
             </div>
             <div class="post-image"><img src="{{ post.image.url }}"></div>
             <p class="post-body">{{ post.body }}</p>
-            <div class="post-footer">
+            <form method="post" action="/like/{{ post.id }}">
+                {% csrf_token %}                
+                <button class="like-button" type="submit">
+                    {% if is_liked %}
+                        <span>Unlike the post</span>&nbsp;&nbsp;
+                        <i class="bi bi-star-fill"></i>
+                    {% else %}
+                        <span>Like the post</span>&nbsp;&nbsp;
+                        <i class="bi bi-star"></i>
+                    {% endif %}
+                    </button>                
+            </form>
+            <div class="post-footer">                
                 <div class="post-tags">
                     <span>Tags: </span>
                     {% for tag in tags %}            
@@ -29,10 +41,7 @@
                         <a href="/posts/{{ post.id }}/edit">Edit</a>
                     {% endif %}        
                 </div>
-            </div>
-            <form method="post" action="like/{{ post.id }}">
-                <button class="like-button" type="submit"><i class="bi bi-star"></i></button>                
-            </form>
+            </div>            
         </div>
         {% if is_user_authenticated %}
             <div class="new-comment-container">
