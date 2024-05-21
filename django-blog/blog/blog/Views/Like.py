@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from django.http import HttpRequest
-from ..models import Like, Post
+from ..Models import Like, Post
 from django.shortcuts import redirect
 
 

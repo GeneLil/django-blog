@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.views.generic import TemplateView
 from django.shortcuts import render
-from ..models import Post, Comment, Like
+from ..Models import Post, Comment, Like
 from ..forms import NewCommentForm
 
 

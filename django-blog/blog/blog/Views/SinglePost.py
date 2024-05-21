@@ -1,7 +1,7 @@
 from datetime import datetime
 from django.http import HttpRequest
 from django.views.generic import TemplateView
-from ..models import Post
+from ..Models import Post
 from ..forms import NewPostForm
 from django.shortcuts import render, redirect
 

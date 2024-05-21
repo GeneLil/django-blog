@@ -36,6 +36,15 @@
 .post-body {
     margin-bottom: 0;
 }
+.errorlist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.errorLabel {
+    font-size: 12px;
+    color: #e00;
+}
 .post-details .post-container {
     display: flex;
     flex-direction: column;
@@ -51,6 +60,7 @@
 .post-author span {
     font-size: 12px;
 }
+.user-profile-container,
 .new-post-container,
 .tags-container {
     margin-top: 32px;

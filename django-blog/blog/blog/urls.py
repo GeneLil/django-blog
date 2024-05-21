@@ -25,6 +25,7 @@ from .Views.NewTag import NewTagView
 from .Views.Tags import TagsView
 from .Views.NewComment import NewCommentView
 from .Views.Like import LikeView
+from .Views.UserProfile import UserProfileView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -36,6 +37,7 @@ urlpatterns = [
     path("comments/new/<int:post_id>", NewCommentView.as_view(), name="new-comment"),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new/", NewTagView.as_view(), name="new-tag"),
+    path("user-profile/", UserProfileView.as_view(), name="user-profile"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),    
     path("", TemplateView.as_view(template_name="home.html"), name="home"),

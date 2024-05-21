@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Tag, Comment, Like
+from .Models import Post, Tag, Comment, Like, UserProfile
 
 
 @admin.register(Tag)
@@ -36,3 +36,13 @@ class LikeAdmin(admin.ModelAdmin):
     
     class Meta:
         model = Like
+        
+
+@admin.register(UserProfile)
+class UserProfileAdmin(admin.ModelAdmin):
+    
+    list_display = ['user_id', 'avatar', 'dob', 'email']
+    
+    class Meta:
+        model = UserProfile
+        

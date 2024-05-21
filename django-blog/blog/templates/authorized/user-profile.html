@@ -1,0 +1,32 @@
+{% extends "home.html" %}
+
+{% block authorized_context %}
+    <div class="container-sm user-profile-container">
+        <h3>Update profile</h3>   
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label" for="username">Username:</label>
+                <input name="username" id="username" value={{ user.username }} class="form-control" />
+                <span class="errorLabel">{{ form.user.username.errors }}</span>   
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.avatar.id_for_label }}">Avatar:</label>
+                <div class="post-image"><img src="{{ avatar_url }}"></div>
+                {{ form.avatar }}
+                <span class="errorLabel">{{ form.avatar.errors }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.email.id_for_label }}">Email:</label>
+                {{ form.email }}
+                <span class="errorLabel">{{ form.email.errors }}</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="{{ form.dob.id_for_label }}">Date of birth:</label>
+                {{ form.dob }}
+                <span class="errorLabel">{{ form.dob.errors }}</span>
+            </div>             
+            <button class="btn btn-primary" type="submit">Save</button>            
+        </form>
+    </div>
+{% endblock %}

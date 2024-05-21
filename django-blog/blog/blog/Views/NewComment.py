@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.http import HttpRequest
 from ..forms import NewCommentForm
-from ..models import Comment, Post
+from ..Models import Comment, Post
 from django.shortcuts import redirect
 
 

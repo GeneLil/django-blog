@@ -15,7 +15,10 @@
                     {{ form.password }}
                     {{ form.password.errors }}
                 </div>
-                <button type="submit" class="btn btn-primary">Log In</button>
+                <div class="login-footer">
+                    <button type="submit" class="btn btn-primary">Log In</button>
+                    <a href="{% url 'signup' %}">Sign up</a>
+                </div>
             </form>
         </div>
     </div>

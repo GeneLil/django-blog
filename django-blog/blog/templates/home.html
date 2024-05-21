@@ -9,8 +9,8 @@
     {% else %}
         <div class="not-logged-in-page flex-column">
             <p>You are not logged in</p>
-            <a class="nav-link" href="{% url 'password_reset' %}">Password Reset</a>
-            <a class="nav-link" href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'password_reset' %}">Password Reset</a>
+            <a href="{% url 'login' %}">Log In</a>
         </div>
     {% endif %}
 {% endblock %}

@@ -16,7 +16,8 @@
                 <i class="bi bi-person-circle"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="user-profile">User profile</a>
+                <em class="dropdown-item-text">Hello, {{user.username}}</em>
+                <a class="dropdown-item" href="{% url 'user-profile' %}">User profile</a>
                 <form class="dropdown-item" action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
                     <button class="logout-button" type="submit">Log Out</button>

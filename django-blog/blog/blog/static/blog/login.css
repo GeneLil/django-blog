@@ -8,3 +8,13 @@
 .login-container {    
     width: 360px;
 }
+.login-footer {
+    align-items: flex-start;
+    display: flex;
+    justify-content: space-between;
+}
+.login-footer a {
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: 500;
+}
