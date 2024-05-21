@@ -6,4 +6,8 @@ class Tag(models.Model):
     
     def __str__(self):
         return self.title
+    
+    
 
+def get_tag_title(tag: Tag):
+        return Tag.objects.get(id=tag.pk).title

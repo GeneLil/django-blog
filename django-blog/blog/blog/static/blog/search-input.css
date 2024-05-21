@@ -1,0 +1,32 @@
+.posts-header .search-post-input {
+    width: 480px;
+}
+.search-posts-wrapper {
+    position: relative;
+}
+.search-results {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    padding: 8px 12px;
+    background: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.display-none {
+    display: none;
+}
+.post-search-item {
+    background: #fff;
+    list-style: none;
+    padding: 4px;
+}
+.post-search-item a {
+    display: block;
+    font-size: 14px;
+    text-decoration: none;
+    width: 100%;
+}
+.post-search-item:hover {
+    background-color: #eeeeee;
+}

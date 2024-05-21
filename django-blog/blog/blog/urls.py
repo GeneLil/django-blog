@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic.base import TemplateView
 from .Views.SinglePost import SinglePostView
-from .Views.Posts import PostsView
+from .Views.Posts import PostsView, get_posts_by_tags
 from .Views.NewTag import NewTagView
 from .Views.Tags import TagsView
 from .Views.NewComment import NewCommentView
@@ -37,6 +37,7 @@ urlpatterns = [
     path("comments/new/<int:post_id>", NewCommentView.as_view(), name="new-comment"),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new/", NewTagView.as_view(), name="new-tag"),
+    path("get-posts-by-tags/", get_posts_by_tags),
     path("user-profile/", UserProfileView.as_view(), name="user-profile"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),    
