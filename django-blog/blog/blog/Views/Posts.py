@@ -59,17 +59,24 @@ class PostsView(TemplateView):
         }
         
         
-    def get_all_posts(self):
+    def get_all_posts(self, request: HttpRequest):
+        user = request.user
         posts = Post.objects.all()
         all_comments = Comment.objects.all()
-        all_likes = Like.objects.all()                
+        all_likes = Like.objects.all()                     
+        posts_liked_by_user = []
         for post in posts:
             comments_for_post = all_comments.filter(post_id=post.id)
             likes_for_post = all_likes.filter(post_id=post.id)            
+            for like in likes_for_post:
+                if like.user.id == user.id:
+                    posts_liked_by_user.append(post)
+                    
             post.comments_quantity = len(comments_for_post)
             post.likes_quantity = len(likes_for_post)            
         return {
-            'posts': posts
+            'posts': posts,
+            'posts_liked_by_user': posts_liked_by_user
         }        
         
         
@@ -79,5 +86,5 @@ class PostsView(TemplateView):
                 context = self.get_single_post(request, post_id=kwargs['pk'])
                 return render(request, template_name=self.post_details_template, context=context)    
             
-            context = self.get_all_posts()
+            context = self.get_all_posts(request)
             return render(request, template_name=self.all_posts__template, context=context)

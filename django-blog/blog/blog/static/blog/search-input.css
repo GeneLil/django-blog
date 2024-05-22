@@ -1,6 +1,11 @@
 .posts-header .search-post-input {
     width: 480px;
 }
+@media (max-width: 768px) {
+    .posts-header .search-post-input {
+        display: none;
+    }
+}
 .search-posts-wrapper {
     position: relative;
 }

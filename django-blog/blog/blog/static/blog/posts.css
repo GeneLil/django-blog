@@ -1,6 +1,24 @@
 .authorized-container {
     padding-top: 48px;
 }
+.posts-page {
+    background-color: #f8f9fa;
+    display: flex;
+}
+.liked-posts {
+    margin-top: 32px;
+    padding: 16px;
+}
+.liked-post {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;    
+}
+@media (max-width: 1024px) {
+    .liked-posts {
+        display: none;
+    }
+}
 .posts-container {
     display: flex;
     flex-direction: column;
@@ -26,7 +44,8 @@
     margin-top: 32px;
     padding: 16px;
 }
-.post-image {        
+.post-image {    
+    margin-bottom: 8px;    
     height: 180px;
     width: 180px;
 }

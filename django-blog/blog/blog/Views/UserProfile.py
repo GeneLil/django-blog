@@ -38,24 +38,26 @@ class UserProfileView(TemplateView):
     
     def post(self, request: HttpRequest):        
         user = request.user
+        form = UserProfileForm(request.POST, request.FILES)
         if user.is_authenticated:
-            user_profile = UserProfile.objects.get(user_id=user.id)       
-            form = UserProfileForm(request.POST, request.FILES)
-            if form.is_valid():
-                if user_profile is None:
-                    self.create_profile(request, form)                
-                else:
-                    self.update_profile(request, form)
-                return redirect('posts')
-            else:
-                form = UserProfileForm(instance=user_profile)
-                form.changed_data
+            if form.is_valid():                
+                try: 
+                    user_profile = UserProfile.objects.get(user_id=user.id)                    
+                    if user_profile is not None:
+                        self.update_profile(request, form)
+                        return redirect('posts')
+                except UserProfile.DoesNotExist:                                    
+                    self.create_profile(request, form)                                
+                    return redirect('posts')
+            else:                
+                user_profile = UserProfile.objects.get(user_id=user.id)              
+                
                 context = {
                     'form': form,
                     'user': user,
                     'avatar_url': user_profile.avatar.url,                    
                 } 
-                return render(request, template_name=self.template_name, context=context)    
+                return render(request, template_name=self.template_name, context=context)          
                 
     
     def get(self, request: HttpRequest):

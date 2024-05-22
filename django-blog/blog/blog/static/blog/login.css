@@ -1,11 +1,13 @@
-.login-page {
+.login-page,
+.signup-page {
     align-items: center;
     display: flex;
     height: 100vh;
     justify-content: center;
     width: 100%;
 }
-.login-container {    
+.login-container,
+.signup-container {    
     width: 360px;
 }
 .login-footer {

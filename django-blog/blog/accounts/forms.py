@@ -5,9 +5,20 @@ from django import forms
 
 class CustomUserCreationForm(UserCreationForm):
 
+    password1 = forms.CharField(            
+        strip=False,
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'password1'}),        
+    )
+    password2 = forms.CharField(        
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'password2'}),
+        strip=False,        
+    )
     class Meta:
         model = CustomUser
-        fields = ("username", "email")
+        fields = ('username', 'password1', 'password2')
+        widgets = {
+            'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': '', 'id': 'username'}),    
+        }
 
 
 class CustomUserChangeForm(UserChangeForm):
