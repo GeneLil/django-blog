@@ -24,6 +24,14 @@
     flex-direction: column;
     gap: 32px;
 }
+.post-short-description {
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+}
 .post-header {
     flex-direction: column;
     display: flex;

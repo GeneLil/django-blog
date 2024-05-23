@@ -18,14 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from django.views.generic.base import TemplateView
-from .Views.SinglePost import SinglePostView
-from .Views.Posts import PostsView, get_posts_by_tags
-from .Views.NewTag import NewTagView
-from .Views.Tags import TagsView
-from .Views.NewComment import NewCommentView
-from .Views.Like import LikeView
-from .Views.UserProfile import UserProfileView
+from .views import SinglePostView
+from .views import PostsView, get_posts_by_tag_search
+from .views import NewTagView
+from .views import TagsView
+from .views import NewCommentView
+from .views import LikeView
+from .views import UserProfileView
+from .views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -37,9 +37,9 @@ urlpatterns = [
     path("comments/new/<int:post_id>", NewCommentView.as_view(), name="new-comment"),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new/", NewTagView.as_view(), name="new-tag"),
-    path("get-posts-by-tags/", get_posts_by_tags),
+    path("get-posts-by-tags/", get_posts_by_tag_search),
     path("user-profile/", UserProfileView.as_view(), name="user-profile"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),    
-    path("", TemplateView.as_view(template_name="home.html"), name="home"),
+    path("", home_view, name="home"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
