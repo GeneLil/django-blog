@@ -36,16 +36,16 @@
                         <span class="badge text-bg-primary">{{ tag.title }}</span>            
                     {% endfor %}    
                 </div>
-                <div class="post-edit-link">
-                    {% if can_edit_post %}
-                        <a href="/posts/{{ post.id }}/edit">Edit</a>
-                    {% endif %}        
-                </div>
+                {% if can_edit_post %}
+                    <div class="post-edit-link">                   
+                        <a href="/posts/{{ post.id }}/edit">Edit</a>                     
+                    </div>
+                {% endif %}       
             </div>            
         </div>
         {% if is_user_authenticated %}
             <div class="new-comment-container">
-                <form method="post" action={% url "new-comment" post.id %}>
+                <form method="post" action="{% url 'new-comment' post_id=post.id %}">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label class="form-label" for="{{ form.title.id_for_label }}">Comment:</label>

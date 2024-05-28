@@ -37,7 +37,7 @@ urlpatterns = [
     path("comments/new/<int:post_id>", NewCommentView.as_view(), name="new-comment"),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new/", NewTagView.as_view(), name="new-tag"),
-    path("get-posts-by-tags/", get_posts_by_tag_search),
+    path("get-posts-by-tags/", get_posts_by_tag_search, name='get-posts-by-tag'),
     path("user-profile/", UserProfileView.as_view(), name="user-profile"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),    

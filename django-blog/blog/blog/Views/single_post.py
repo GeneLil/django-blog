@@ -52,7 +52,6 @@ class SinglePostView(TemplateView):
         if 'pk' in kwargs:
             post_id = kwargs['pk']
             post = Post.objects.get(pk=post_id)
-
             context = {
                 'form': NewPostForm(instance=post),
                 'isEditing': True,                

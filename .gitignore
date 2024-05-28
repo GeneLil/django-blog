@@ -3,6 +3,7 @@
 *.pot
 *.pyc
 django_blog/blog/blog/__pycache__
+media
 
 # Backup files # 
 *.bak 
