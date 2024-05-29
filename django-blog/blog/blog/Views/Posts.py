@@ -37,25 +37,25 @@ def get_posts_by_tag_search(request: HttpRequest):
             'title': post.title,
             'tags': get_tags_titles(post.tags)
         })
-    return JsonResponse({ 'posts': serialized_posts }) 
+    return JsonResponse({ 'posts': serialized_posts })
 
 
 def get_single_post_context(request: HttpRequest, post_id: str):
-        """Getting single post"""
-        post = Post.objects.get(pk=post_id)
-        user_id = request.user.pk
-        user_can_edit_post = post.author.pk == user_id
-        comments = Comment.objects.filter(post_id=post_id).order_by('-created_at')
-        is_liked_by_user = Like.objects.filter(post_id=post_id).filter(user_id=user_id)
-        return {
-            'post': post,
-            'tags': post.tags.all(),
-            'can_edit_post': user_can_edit_post,
-            'is_user_authenticated': request.user.is_authenticated,
-            'add_comment_form': NewCommentForm(),
-            'comments': comments,   
-            'is_liked': bool(is_liked_by_user),
-        }
+    """Getting single post"""
+    post = Post.objects.get(pk=post_id)
+    user_id = request.user.pk
+    user_can_edit_post = post.author.pk == user_id
+    comments = Comment.objects.filter(post_id=post_id).order_by('-created_at')
+    is_liked_by_user = Like.objects.filter(post_id=post_id).filter(user_id=user_id)
+    return {
+        'post': post,
+        'tags': post.tags.all(),
+        'can_edit_post': user_can_edit_post,
+        'is_user_authenticated': request.user.is_authenticated,
+        'add_comment_form': NewCommentForm(),
+        'comments': comments,   
+        'is_liked': bool(is_liked_by_user),
+    }
 
 def get_all_posts_context(request: HttpRequest):
     """"Getting all posts"""
@@ -76,7 +76,7 @@ def get_all_posts_context(request: HttpRequest):
         'posts': posts,
         'posts_liked_by_user': posts_liked_by_user
     }
-        
+
 
 class PostsView(TemplateView):
     """Class for posts view"""

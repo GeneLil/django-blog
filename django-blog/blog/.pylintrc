@@ -1,0 +1,3 @@
+[MASTER]
+
+ignore=blog\views\test_views.py, blog\urls.py, blog\migrations

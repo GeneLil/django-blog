@@ -19,7 +19,7 @@ def create_profile(request: HttpRequest, form: UserProfileForm):
     username = request.POST.get('username')
     user.username = username
     user.save()
-    email, dob, avatar = get_form_data(form)                                
+    email, dob, avatar = get_form_data(form)
     user_profile = UserProfile(user=user, email=email, dob=dob, avatar=avatar)
     user_profile.save()
 
@@ -53,7 +53,7 @@ class UserProfileView(TemplateView):
                     if user_profile is not None:
                         update_profile(request, form)
                         return redirect('posts')
-                except UserProfile.DoesNotExist:         
+                except UserProfile.DoesNotExist:
                     create_profile(request, form)
                     return redirect('posts')
             else:

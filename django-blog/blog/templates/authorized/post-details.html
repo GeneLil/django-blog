@@ -4,69 +4,71 @@
     <div class="posts-header">
         <a href="/posts">Back to posts</a>
     </div>
-    <div class="container post-details">
-        <div class="post-container">
-            <div class="post-header">
-                <h3>{{ post.title }}</h3>
-                <div class="post-author">
-                    <span class="fw-light">written by {{ post.author.username }} on {{ post.created_at }}</span>
-                    {% if post.modified_at %}
-                        <span class="fw-light">modified by {{ post.author.username }} on {{ post.modified_at }}</span>
-                    {% endif %}
-                </div>
-            </div>
-            <div class="post-image"><img src="{{ post.image.url }}"></div>
-            <p class="post-body">{{ post.body }}</p>
-            <form method="post" action="/like/{{ post.id }}">
-                {% csrf_token %}                
-                <button class="like-button" type="submit">
-                    {% if is_liked %}
-                        <span>Unlike the post</span>&nbsp;&nbsp;
-                        <i class="bi bi-star-fill"></i>
-                    {% else %}
-                        <span>Like the post</span>&nbsp;&nbsp;
-                        <i class="bi bi-star"></i>
-                    {% endif %}
-                    </button>                
-            </form>
-            <div class="post-footer">                
-                <div class="post-tags">
-                    <span>Tags: </span>
-                    {% for tag in tags %}            
-                        <span class="badge text-bg-primary">{{ tag.title }}</span>            
-                    {% endfor %}    
-                </div>
-                {% if can_edit_post %}
-                    <div class="post-edit-link">                   
-                        <a href="/posts/{{ post.id }}/edit">Edit</a>                     
+    <div class="post-details-page">
+        <div class="container">
+            <div class="post-container">
+                <div class="post-header">
+                    <h3>{{ post.title }}</h3>
+                    <div class="post-author">
+                        <span class="fw-light">written by {{ post.author.username }} on {{ post.created_at }}</span>
+                        {% if post.modified_at %}
+                            <span class="fw-light">modified by {{ post.author.username }} on {{ post.modified_at }}</span>
+                        {% endif %}
                     </div>
-                {% endif %}       
-            </div>            
-        </div>
-        {% if is_user_authenticated %}
-            <div class="new-comment-container">
-                <form method="post" action="{% url 'new-comment' post_id=post.id %}">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label class="form-label" for="{{ form.title.id_for_label }}">Comment:</label>
-                        {{ add_comment_form.body }}
-                    </div>
-                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+                <div class="post-image"><img src="{{ post.image.url }}"></div>
+                <p class="post-body">{{ post.body }}</p>
+                <form method="post" action="/like/{{ post.id }}">
+                    {% csrf_token %}                
+                    <button class="like-button" type="submit">
+                        {% if is_liked %}
+                            <span>Unlike the post</span>&nbsp;&nbsp;
+                            <i class="bi bi-star-fill"></i>
+                        {% else %}
+                            <span>Like the post</span>&nbsp;&nbsp;
+                            <i class="bi bi-star"></i>
+                        {% endif %}
+                        </button>                
                 </form>
-            </div>
-        {% endif %}        
-        {% if comments %}
-            <div class="comments-container">
-                {% for comment in comments %}
-                    <div class="comment-entry">
-                        <div class="comment-header">
-                            <h6>{{ comment.author.username }}</h6>
-                            <em>{{ comment.created_at }}</em>
-                        </div>
-                        <div>{{ comment.body }}</div>
+                <div class="post-footer">                
+                    <div class="post-tags">
+                        <span>Tags: </span>
+                        {% for tag in tags %}            
+                            <span class="badge text-bg-primary">{{ tag.title }}</span>            
+                        {% endfor %}    
                     </div>
-                {% endfor %}
+                    {% if can_edit_post %}
+                        <div class="post-edit-link">                   
+                            <a href="/posts/{{ post.id }}/edit">Edit</a>                     
+                        </div>
+                    {% endif %}       
+                </div>            
             </div>
-        {% endif %}
+            {% if is_user_authenticated %}
+                <div class="new-comment-container">
+                    <form method="post" action="{% url 'new-comment' post_id=post.id %}">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label" for="{{ form.title.id_for_label }}">Comment:</label>
+                            {{ add_comment_form.body }}
+                        </div>
+                        <button class="btn btn-primary" type="submit">Add</button>
+                    </form>
+                </div>
+            {% endif %}        
+            {% if comments %}
+                <div class="comments-container">
+                    {% for comment in comments %}
+                        <div class="comment-entry">
+                            <div class="comment-header">
+                                <h6>{{ comment.author.username }}</h6>
+                                <em>{{ comment.created_at }}</em>
+                            </div>
+                            <div>{{ comment.body }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
     </div>
 {% endblock %}

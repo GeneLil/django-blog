@@ -29,8 +29,8 @@ from .views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("posts/<int:pk>", PostsView.as_view(), name="post-details"),    
-    path("posts/", PostsView.as_view(), name="posts"),    
+    path("posts/<int:pk>", PostsView.as_view(), name="post-details"),
+    path("posts/", PostsView.as_view(), name="posts"),
     path("posts/new/", SinglePostView.as_view(), name="new-post"),
     path("like/<int:post_id>", LikeView.as_view(), name="like-post"),
     path("posts/<int:pk>/edit", SinglePostView.as_view(), name="edit-post"),
@@ -40,6 +40,6 @@ urlpatterns = [
     path("get-posts-by-tags/", get_posts_by_tag_search, name='get-posts-by-tag'),
     path("user-profile/", UserProfileView.as_view(), name="user-profile"),
     path('accounts/', include('accounts.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),    
+    path('accounts/', include('django.contrib.auth.urls')),
     path("", home_view, name="home"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

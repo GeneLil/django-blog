@@ -15,6 +15,7 @@ def create_post(request: HttpRequest, form: NewPostForm):
     """Method for creating post"""
     title = form.cleaned_data.get('title')
     body = form.cleaned_data.get('body')
+    short_description = ''
     if body is not None:
         short_description = make_short_description(body[:400])
     image = form.cleaned_data.get('image')
