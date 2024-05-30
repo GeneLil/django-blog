@@ -48,6 +48,9 @@
     padding: 12px;
     height: 64px;
 }
+.posts-header h3 {
+    margin: 0;
+}
 .posts-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));

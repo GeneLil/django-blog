@@ -1,0 +1,9 @@
+.tags-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+}
+.create-new-tag-button {
+    margin-top: 16px;
+}

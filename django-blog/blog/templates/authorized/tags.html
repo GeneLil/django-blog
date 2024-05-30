@@ -2,15 +2,16 @@
 
 {% block authorized_context %}
     <div class="posts-header">        
-        <span>Total tags: {{ tags|length }}</span>
-        <form method="get" action="/tags/new/">
-            <button class="btn btn-primary btn-sm" type="submit">Add new tag</button>
-        </form>     
+        <h3>Tags</h3>
     </div>
     <div class="container tags-container">
-        <h3>Tags</h3>
-        {% for tag in tags %}            
-            <span class="badge text-bg-primary">{{ tag.title }}</span>            
-        {% endfor %}    
+        <div class="mb-3 tags-form">
+            <label class="form-label" for="title">Create new tag:</label>
+            <input id="title" class="form-control" />
+            <span class="errorLabel">{{ form.title.errors }}</span>
+            <button type="button" id="create-tag-button" class="btn btn-primary create-new-tag-button">Create</button>
+        </div>
+        <div class="tags-wrapper" />
     </div>
+    {% include "authorized\toast.html" with id="tagCreated" text="Tag successfully created" %}
 {% endblock %}
