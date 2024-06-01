@@ -2,8 +2,8 @@
 from django.views.generic import TemplateView
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
-from ..forms import UserProfileForm
-from ..models import UserProfile
+from .forms import UserProfileForm
+from .models import UserProfile
 
 
 def get_form_data(form: UserProfileForm):

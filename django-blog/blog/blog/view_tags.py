@@ -3,8 +3,8 @@ import json
 from django.views.generic import TemplateView
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect, render
-from ..models import Tag
-from ..forms import NewTagForm
+from .models import Tag
+from .forms import NewTagForm
 from django.http import JsonResponse
 
 

@@ -1,0 +1,20 @@
+name: test_Django
+on: [pull_request, push] # activates the workflow when there is a push or pull request in the repo
+jobs:
+  test_project:
+    name: Run tests throughout project
+    runs-on: ubuntu-latest # operating system your code will run on
+    steps:      
+      - name: Setup Python Version
+        uses: actions/setup-python@v4.7.0
+        with:
+          python-version: 3.11 # Install the python version needed
+      - name: Checkout repository content
+        uses: actions/checkout@v3 # Checkout the repository content to github runner.
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt # Install the dependencies (if needed)
+  
+      - name: Run Django tests
+        run: |           
+          cd django-blog/blog
+          python manage.py test . # run pytest test

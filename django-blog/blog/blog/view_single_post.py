@@ -3,8 +3,8 @@ from datetime import datetime
 from django.http import HttpRequest
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
-from ..models import Post
-from ..forms import NewPostForm
+from .models import Post
+from .forms import NewPostForm
 
 
 def make_short_description(body: str):

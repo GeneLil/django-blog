@@ -1,8 +1,7 @@
 """Module for models testing"""
 from django.test import TestCase
 from accounts.models import CustomUser
-from .post import Post
-from .tag import Tag
+from .models import Post, Tag
 
 
 class ModelsTestCase(TestCase):
