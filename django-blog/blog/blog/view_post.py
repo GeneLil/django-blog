@@ -5,9 +5,8 @@ from django.http import HttpRequest
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from ..models import Post, Comment, Like
-from ..models.tag import get_tag_title
-from ..forms import NewCommentForm
+from .models import Post, Comment, Like, get_tag_title
+from .forms import NewCommentForm
 
 
 def get_tags_titles(tags):

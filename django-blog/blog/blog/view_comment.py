@@ -2,11 +2,11 @@
 from django.views.generic import TemplateView
 from django.http import HttpRequest
 from django.shortcuts import redirect
-from ..forms import NewCommentForm
-from ..models import Comment, Post
+from .forms import NewCommentForm
+from .models import Comment, Post
 
 
-class NewCommentView(TemplateView):
+class CommentView(TemplateView):
     """View class for comment"""
     template_name = ''
 

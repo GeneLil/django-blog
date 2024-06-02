@@ -18,13 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from .views import SinglePostView
-from .views import PostsView, get_posts_by_tag_search
-from .views import TagsView, get_all_tags
-from .views import NewCommentView
-from .views import LikeView
-from .views import UserProfileView
-from .views import home_view
+from .view_single_post import SinglePostView
+from .view_post import PostsView, get_posts_by_tag_search
+from .view_tags import TagsView, get_all_tags
+from .view_comment import CommentView
+from .view_like import LikeView
+from .view_user_profile import UserProfileView
+from .view_home import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,7 +33,7 @@ urlpatterns = [
     path("posts/new/", SinglePostView.as_view(), name="new-post"),
     path("like/<int:post_id>", LikeView.as_view(), name="like-post"),
     path("posts/<int:pk>/edit", SinglePostView.as_view(), name="edit-post"),
-    path("comments/new/<int:post_id>", NewCommentView.as_view(), name="new-comment"),
+    path("comments/new/<int:post_id>", CommentView.as_view(), name="new-comment"),
     path("tags/all-tags", get_all_tags, name='get-all-tags'),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new", TagsView.as_view(), name="new-tag"),

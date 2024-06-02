@@ -4,7 +4,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from accounts.models import CustomUser
-from ..models import Post, Like, Comment, Tag
+from .models import Post, Like, Comment, Tag
 
 
 class HomePageViewTest(TestCase):
@@ -106,9 +106,9 @@ class PostViewTest(TestCase):
         post3 = Post.objects.create(pk=3, title='post3',
                                     body='blah blah blah',
                                     author_id=1, image=post_image)
-        tag1 = Tag.objects.create(title="family")
-        tag2 = Tag.objects.create(title="adventure")
-        tag3 = Tag.objects.create(title="cats")
+        tag1 = Tag.objects.create(pk=1, title="family")
+        tag2 = Tag.objects.create(pk=2, title="adventure")
+        tag3 = Tag.objects.create(pk=3, title="cats")
         post1.tags.set([tag1, tag2])
         post2.tags.set([tag2])
         post3.tags.set([tag1, tag3])
@@ -165,3 +165,15 @@ class PostViewTest(TestCase):
             {'id': 3, 'tags': ['family', 'cats'], 'title': 'post3'}
         ] })
         
+    def test_get_all_tags(self):
+        """Test getting all tags"""
+        self.client.login(username='john', password='12345')
+        path = reverse('get-all-tags')
+        response = self.client.get(path)
+        self.assertEqual(response.status_code, 200)
+        response_content = response.content
+        self.assertJSONEqual(str(response_content, encoding='utf8'), { 'tags': [
+            { 'id': 1, 'title': 'family' },
+            { 'id': 2, 'title': 'adventure' },
+            { 'id': 3, 'title': 'cats' }
+        ] })
