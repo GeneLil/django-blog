@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    const tagsPage = $(".tags-container")
     const createTagButton = $("#create-tag-button")
     const tagTitleInput = $(".tags-form #title")
 
@@ -80,6 +81,8 @@ $(document).ready(() => {
         createTagQuery($(tagTitleInput).val())
     })
 
-    checkIfSubmitButtonEnabled()
-    getAllTagsQuery()
+    if (tagsPage.length > 0) {
+        checkIfSubmitButtonEnabled()
+        getAllTagsQuery()
+    }
 })

@@ -12,8 +12,13 @@ $(document).ready(function(){
             $(postSearchResultsContainer).prepend(emptyElement)
             return
         }
+        const renderTags = (tags) => {
+            tagsElement = $("<span></span>")
+            tags.forEach(tag => tagsElement.append("<span class='badge text-bg-primary'>" + tag + "</span>&nbsp;"))
+            return tagsElement.html()
+        }
         posts.forEach(post => {            
-            const listElement = "<li class='post-search-item'><a href='/posts/" + post.id + "'>Title: " + post.title + "<br/> Tags:" + post.tags.join(", ") + "</a></li>"
+            const listElement = "<li class='post-search-item'><a href='/posts/" + post.id + "'>Title: " + post.title + "<br/> Tags: " + renderTags(post.tags) + "</a></li>"
             $(postSearchResultsContainer).removeClass("display-none")
             $(postSearchResultsContainer).prepend(listElement)
         })

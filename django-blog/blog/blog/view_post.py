@@ -20,17 +20,11 @@ def get_tags_titles(tags):
 def get_posts_by_tag_search(request: HttpRequest):
     """Get posts by list of tags"""
     json_request = json.loads(request.body)
-    tag_search_input = json_request['tagTitle']
-    posts_with_found_tags: List[Post] = []
-    all_posts = Post.objects.all()
-    for post in all_posts:
-        for tag in post.tags.all():
-            if str.lower(tag_search_input).strip() in str.lower(get_tag_title(tag)).strip():
-                posts_with_found_tags.append(post)
-                break
-
+    tag_search_input = json_request['tagTitle']    
+    
     serialized_posts = []
-    for post in posts_with_found_tags:
+    found_posts = Post.objects.filter(tags__title__icontains=str.lower(tag_search_input).strip())
+    for post in found_posts:
         serialized_posts.append({
             'id': post.pk,
             'title': post.title,

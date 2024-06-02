@@ -33,8 +33,7 @@ def update_post(form: NewPostForm, primary_key: str):
     body = form.cleaned_data.get('body')
     post.title = form.cleaned_data.get('title')
     post.body = body
-    if body is not None:
-        post.short_description = make_short_description(body[:400])
+    post.short_description = make_short_description(body[:400])
     post.image = form.cleaned_data.get('image')
     tags = form.cleaned_data.get('tags')
     post.modified_at = datetime.now()
@@ -68,11 +67,17 @@ class SinglePostView(TemplateView):
         """Post method for single post"""
         if request.user.is_authenticated:
             form = NewPostForm(request.POST, request.FILES)
-            if form.is_valid():
-                if 'pk' in kwargs:
+            if 'pk' in kwargs:                
+                if form.is_valid():                                     
                     primary_key = kwargs['pk']
                     update_post(form, primary_key=primary_key)
+                    return redirect('posts')
                 else:
+                    return render(request, template_name=self.edit_post_template, context={'form': form})
+            else:                
+                if form.is_valid():                                     
                     create_post(request, form)
-            return redirect('posts')
+                    return redirect('posts')
+                else:
+                    return render(request, template_name=self.edit_post_template, context={'form': form})
         return redirect('')
