@@ -1,6 +1,5 @@
 """Module for post model"""
 from django.db import models
-from typing import List
 from accounts.models import CustomUser
 
 
@@ -27,7 +26,7 @@ class Post(models.Model):
     modified_at = models.DateTimeField(auto_now_add=False, null=True)
     image = models.ImageField(upload_to="media")
     liked_by = models.ManyToManyField(CustomUser, related_name='liked_by')
-    tags = models.ManyToManyField(Tag, related_name='tags')
+    tags = models.ManyToManyField(Tag, related_name='posts')
 
     def __str__(self):
         return str(self.pk)
@@ -46,8 +45,8 @@ class Post(models.Model):
             for user in self.liked_by.all():
                 users_names.append(user.username)
         return users_names
-            
-            
+
+
 class Comment(models.Model):
     """Class for comment model"""
     author = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='comments')
@@ -60,8 +59,8 @@ class Like(models.Model):
     """Class for like model"""
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='likes')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')
-    
-    
+
+
 class UserProfile(models.Model):
     """Class for user profile model"""
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='user_profile')
