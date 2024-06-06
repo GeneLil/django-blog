@@ -27,7 +27,7 @@ $(document).ready(function(){
     const sendPostsQuery = (inputValue) => {
         $.ajax({
             type: "POST",
-            url: "/get-posts-by-tags",
+            url: "/posts/by-tag",
             data: JSON.stringify({ tagTitle: inputValue }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

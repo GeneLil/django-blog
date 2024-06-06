@@ -61,8 +61,9 @@
                     {% for comment in comments %}
                         <div class="comment-entry">
                             <div class="comment-header">
+                                <img src="{{ comment.author_avatar.url }}">
                                 <h6>{{ comment.author.username }}</h6>
-                                <em>{{ comment.created_at }}</em>
+                                <em class="comment-date">{{ comment.created_at }}</em>
                             </div>
                             <div>{{ comment.body }}</div>
                         </div>

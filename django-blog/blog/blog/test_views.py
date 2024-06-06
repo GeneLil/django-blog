@@ -154,7 +154,7 @@ class PostViewTest(TestCase):
     def test_search_post_by_tag_name(self):
         """Test search posts by tag name result"""
         self.client.login(username='john', password='12345')
-        path = reverse('get-posts-by-tag')
+        path = reverse('posts-by-tag-post')
         response = self.client.post(path,
                                     data=json.dumps({'tagTitle': 'family'}),
                                     content_type="application/json")

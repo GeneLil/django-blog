@@ -2,37 +2,12 @@
 
 {% block authorized_context %}
     <div class="posts-header">        
-        <h3>Posts</h3>
-        <div class="search-posts-wrapper">
-            <input id="search-posts-by-tags" name="search_posts_by_tag" class="form-control search-post-input" placeholder="Search posts by tag" />
-            <div class="search-results"></div>
-        </div>
+        <h3>Posts with tag '{{ title }}'</h3>
         <form method="get" action="/posts/new/">
             <button class="btn btn-primary btn-sm" type="submit">Add new post</button>
         </form>     
     </div>
     <div class="posts-page">
-        <div class="left-column">
-            <div class="liked-posts">
-                <h5>Your liked posts</h5>
-                {% for post in posts_liked_by_user %}
-                    <div class="liked-post">
-                        <h6>{{ post.title }}</h6>
-                        <a href="/posts/{{ post.id }}">Read more</a>
-                        <hr />
-                    </div>
-                {% endfor %}
-            </div>
-            <div class="tags-selector">
-                <h5>Post categories</h5>
-                <select id="postsByTagsSelector" class="form-select">
-                    <option selected disabled>Select tag</option>
-                    {% for post in posts_by_tags %}
-                        <option value="{{ post.0 }}">{{ post.1 }} ({{ post.2 }})</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
         <div class="container-sm posts-container">        
             {% for post in posts %}
                 <div class="post-container">

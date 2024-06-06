@@ -9,8 +9,9 @@
     display: flex;
 }
 .liked-posts {
-    margin-top: 32px;
-    padding: 16px;
+    height: 50vh;
+    margin-top: 30px;
+    overflow-y: auto;
 }
 .liked-post {
     display: flex;
@@ -26,6 +27,12 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+}
+.posts-page .left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 16px;
 }
 .post-short-description {
     -webkit-box-orient: vertical;
@@ -51,17 +58,29 @@
 .posts-header h3 {
     margin: 0;
 }
+.post-container {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+}
 .posts-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 32px;
     margin-top: 32px;
     padding: 16px;
 }
+@media (max-width: 890px) {
+    .posts-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
 .post-image {    
     margin-bottom: 8px;    
-    height: 180px;
-    width: 180px;
+    height: 320px;
+    width: 320px;
 }
 .post-image img {
     width: 100%;
@@ -79,6 +98,7 @@
     color: #e00;
 }
 .post-details-page .post-container {
+    box-shadow: none;
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -115,7 +135,7 @@
 .post-footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    margin-top: 16px;
+    margin-top: auto;
 }
 .post-footer p {
     margin-bottom: 0;

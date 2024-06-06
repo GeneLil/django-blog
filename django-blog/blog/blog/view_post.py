@@ -1,36 +1,9 @@
 """Module for posts view"""
-import json
-from typing import List
 from django.http import HttpRequest
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
-from .models import Post, Comment, Like, get_tag_title
+from .models import Post, Comment, Like, get_tag_title, UserProfile, Tag
 from .forms import NewCommentForm
-
-
-def get_tags_titles(tags):
-    """Getting list of tags titles"""
-    tags_titles = []
-    for tag in tags.all():
-        tags_titles.append(get_tag_title(tag))
-    return tags_titles
-
-
-def get_posts_by_tag_search(request: HttpRequest):
-    """Get posts by list of tags"""
-    json_request = json.loads(request.body)
-    tag_search_input = json_request['tagTitle']    
-    
-    serialized_posts = []
-    found_posts = Post.objects.filter(tags__title__icontains=str.lower(tag_search_input).strip())
-    for post in found_posts:
-        serialized_posts.append({
-            'id': post.pk,
-            'title': post.title,
-            'tags': get_tags_titles(post.tags)
-        })
-    return JsonResponse({ 'posts': serialized_posts })
 
 
 def get_single_post_context(request: HttpRequest, post_id: str):
@@ -39,6 +12,10 @@ def get_single_post_context(request: HttpRequest, post_id: str):
     user_id = request.user.pk
     user_can_edit_post = post.author.pk == user_id
     comments = Comment.objects.filter(post_id=post_id).order_by('-created_at')
+    for comment in comments:
+        user_profile = UserProfile.objects.get(user_id=comment.author.pk)
+        if user_profile is not None:            
+            comment.author_avatar = user_profile.avatar
     is_liked_by_user = Like.objects.filter(post_id=post_id).filter(user_id=user_id)
     return {
         'post': post,
@@ -65,9 +42,18 @@ def get_all_posts_context(request: HttpRequest):
                 posts_liked_by_user.append(post)
         post.comments_quantity = len(comments_for_post)
         post.likes_quantity = len(likes_for_post)
+        
+    all_tags = Tag.objects.all()
+    posts_by_tags = []
+    for tag in all_tags:
+        posts_by_tag_num = len(posts.filter(tags__title=tag.title))
+        if posts_by_tag_num > 0:
+            posts_by_tags.append([tag.pk, tag.title, posts_by_tag_num])
+    
     return {
         'posts': posts,
-        'posts_liked_by_user': posts_liked_by_user
+        'posts_liked_by_user': posts_liked_by_user,
+        'posts_by_tags': posts_by_tags
     }
 
 
