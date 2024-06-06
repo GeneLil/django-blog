@@ -29,7 +29,8 @@ class PostsByTag(TemplateView):
             'title': tag_title
             }
             return render(request, template_name=self.template_name, context=context)
-    
+        return redirect('posts')
+            
     def post(self, request: HttpRequest):        
         """Search posts by tag title"""
         json_request = json.loads(request.body)

@@ -65,7 +65,7 @@ class UserProfileView(TemplateView):
                     'avatar_url': user_profile.avatar.url,                    
                 }
                 return render(request, template_name=self.template_name, context=context)
-        return redirect('')
+        return redirect('home')
 
     def get(self, request: HttpRequest):
         """Get method for user profile"""

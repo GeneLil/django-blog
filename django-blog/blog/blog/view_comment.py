@@ -22,5 +22,5 @@ class CommentView(TemplateView):
                 comment = Comment(author=author, post=post, body=body)
                 comment.save()
                 return redirect(f'/posts/{post_id}')
-        return redirect('')
+        return redirect('home')
     

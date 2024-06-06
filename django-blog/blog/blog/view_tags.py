@@ -15,7 +15,7 @@ def get_all_tags(request: HttpRequest):
         for tag in tags:
             tags_response.append({'id': tag.pk, 'title': tag.title})
         return JsonResponse({'tags': tags_response})
-    return redirect('')
+    return redirect('home')
 
 
 class TagsView(TemplateView):
@@ -29,7 +29,7 @@ class TagsView(TemplateView):
                 'form': NewTagForm()
             }
             return render(request, template_name=self.template_name, context=context)
-        return redirect('')
+        return redirect('home')
     
     def post(self, request: HttpRequest):
         """Post method for new tag view"""        
@@ -44,5 +44,5 @@ class TagsView(TemplateView):
             except:
                 response = {'status': 0, 'message': 'Error during tag creation'} 
             return JsonResponse(response)
-        return redirect('')
+        return redirect('home')
     

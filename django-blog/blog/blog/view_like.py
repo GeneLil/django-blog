@@ -24,5 +24,5 @@ class LikeView(TemplateView):
             like = Like(user=user, post=post)
             like.save()
             return redirect(f'/posts/{post_id}')
-        return redirect('')
+        return redirect('home')
             
