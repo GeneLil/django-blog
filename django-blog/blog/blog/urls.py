@@ -19,7 +19,8 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .view_single_post import SinglePostView
-from .view_post import PostsView, get_posts_by_tag_search
+from .view_post import PostsView
+from .view_posts_by_tag import PostsByTag
 from .view_tags import TagsView, get_all_tags
 from .view_comment import CommentView
 from .view_like import LikeView
@@ -30,14 +31,15 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("posts/<int:pk>", PostsView.as_view(), name="post-details"),
     path("posts/", PostsView.as_view(), name="posts"),
-    path("posts/new/", SinglePostView.as_view(), name="new-post"),
+    path("posts/new/", SinglePostView.as_view(), name="new-post"),    
     path("like/<int:post_id>", LikeView.as_view(), name="like-post"),
     path("posts/<int:pk>/edit", SinglePostView.as_view(), name="edit-post"),
     path("comments/new/<int:post_id>", CommentView.as_view(), name="new-comment"),
     path("tags/all-tags", get_all_tags, name='get-all-tags'),
     path("tags/", TagsView.as_view(), name="tags"),
     path("tags/new", TagsView.as_view(), name="new-tag"),
-    path("get-posts-by-tags", get_posts_by_tag_search, name='get-posts-by-tag'),
+    path("posts/by-tag", PostsByTag.as_view(), name='posts-by-tag-post'),
+    path('posts/by-tag/<int:pk>', PostsByTag.as_view(), name='posts-by-tag-get'),
     path("user-profile/", UserProfileView.as_view(), name="user-profile"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
