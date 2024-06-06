@@ -71,4 +71,4 @@ class PostsView(TemplateView):
 
             context = get_all_posts_context(request)
             return render(request, template_name=self.all_posts__template, context=context)
-        return redirect('')
+        return redirect('home')

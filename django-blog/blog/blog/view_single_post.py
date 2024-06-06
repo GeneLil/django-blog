@@ -80,4 +80,4 @@ class SinglePostView(TemplateView):
                     return redirect('posts')
                 else:
                     return render(request, template_name=self.edit_post_template, context={'form': form})
-        return redirect('')
+        return redirect('home')
