@@ -1,0 +1,3 @@
+#!/bin/bash
+GIT_WORK_TREE=/var/www/sites/django-blog git checkout -f
+touch /var/www/genelil_pythonanywhere_com_wsgi.py

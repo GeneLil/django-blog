@@ -3,6 +3,20 @@ $(document).ready(() => {
     const createTagButton = $("#create-tag-button")
     const tagTitleInput = $(".tags-form #title")
 
+    const tagCreatedToast = $("\
+        <div class='toast-container top-0 end-0 p-3' role='alert' aria-live='assertive' aria-atomic='true'> \
+            <div class='toast' id='tagCreated'> \
+                <div class='d-flex'> \
+                    <div class='toast-body'> \
+                        Hello, world! This is a toast message. \
+                    </div> \
+                    <button type='button' class='btn-close me-2 m-auto' data-bs-dismiss='toast' aria-label='Close'></button> \
+                </div> \
+            </div> \
+        </div>")
+
+    $(tagCreatedToast).appendTo("body")
+
     const badgeColors = ["primary", "secondary", "success", "danger", "warning", "info", "light", "dark"]
 
     const getRandomColor = () => {            
@@ -69,7 +83,7 @@ $(document).ready(() => {
                 clearAllTags()
                 getAllTagsQuery()                           
                 showSuccessToast()                
-                $(tagTitleInput).val("")
+                $(tagTitleInput).val("").attr("value", '')
             },
             error: (error) => {
                 console.log(error)
