@@ -8,10 +8,11 @@
     padding: 16px;
 }
 .comment-entry {
-    display: flex;
+    display: grid;
     align-items: flex-start;
     gap: 32px;
     padding: 16px;
+    grid-template-columns: 200px 1fr;
 }
 .comment-entry img {
     border-radius: 100%;

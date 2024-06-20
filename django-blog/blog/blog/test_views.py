@@ -70,9 +70,9 @@ class CommentViewTest(TestCase):
     def test_comment_is_created(self):
         """Test creation of Comment instance"""
         self.client.login(username='john', password='12345')
-        path = reverse('new-comment', kwargs={'post_id': 1})
-        response = self.client.post(path, data={'body': 'Some comment'})
-        self.assertEqual(response.status_code, 302)
+        path = reverse('new-comment')
+        response = self.client.post(path, data={'post_id': 1, 'body': 'Some comment'})
+        self.assertEqual(response.status_code, 200)
         comment = Comment.objects.get(post_id=1, author_id=1)
         self.assertEqual(comment.author.pk, 1)
         self.assertEqual(comment.post.pk, 1)
