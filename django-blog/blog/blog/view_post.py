@@ -11,19 +11,14 @@ def get_single_post_context(request: HttpRequest, post_id: str):
     post = Post.objects.get(pk=post_id)
     user_id = request.user.pk
     user_can_edit_post = post.author.pk == user_id
-    comments = Comment.objects.filter(post_id=post_id).order_by('-created_at')
-    for comment in comments:
-        user_profile = UserProfile.objects.get(user_id=comment.author.pk)
-        if user_profile is not None:            
-            comment.author_avatar = user_profile.avatar
+    
     is_liked_by_user = Like.objects.filter(post_id=post_id).filter(user_id=user_id)
     return {
         'post': post,
         'tags': post.tags.all(),
         'can_edit_post': user_can_edit_post,
         'is_user_authenticated': request.user.is_authenticated,
-        'add_comment_form': NewCommentForm(),
-        'comments': comments,   
+        'add_comment_form': NewCommentForm(),    
         'is_liked': bool(is_liked_by_user),
     }
 

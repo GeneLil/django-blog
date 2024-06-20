@@ -45,31 +45,15 @@
                 </div>            
             </div>
             {% if is_user_authenticated %}
-                <div class="new-comment-container">
-                    <form method="post" action="{% url 'new-comment' post_id=post.id %}">
-                        {% csrf_token %}
-                        <div class="mb-3">
-                            <label class="form-label" for="{{ add_comment_form.body.id_for_label }}">Comment:</label>
-                            {{ add_comment_form.body }}
-                        </div>
-                        <button class="btn btn-primary" type="submit">Add</button>
-                    </form>
+                <div class="new-comment-container">                                            
+                    <div class="mb-3">
+                        <label class="form-label" for="addCommentInput">Comment:</label>
+                        <textarea class="form-control" id="addCommentInput"></textarea>
+                    </div>
+                    <button class="btn btn-primary" type="submit" id="addCommentButton">Add</button>                    
                 </div>
-            {% endif %}        
-            {% if comments %}
-                <div class="comments-container">
-                    {% for comment in comments %}
-                        <div class="comment-entry">
-                            <div class="comment-header">
-                                <img src="{{ comment.author_avatar.url }}">
-                                <h6>{{ comment.author.username }}</h6>
-                                <em class="comment-date">{{ comment.created_at }}</em>
-                            </div>
-                            <div>{{ comment.body }}</div>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
+            {% endif %}                    
+            <div class="comments-container"></div>                                                
         </div>
     </div>
 {% endblock %}
