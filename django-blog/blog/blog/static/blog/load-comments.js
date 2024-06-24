@@ -9,7 +9,7 @@ $.commentMarkup = (username, avatar_url, created_at, body) => {
             </div>"
 }
 
-$.loadCommentsForPost = () => {
+const loadCommentsForPost = () => {
     const commentsContainer = $(".comments-container")
 
     const loadCommentsQuery = (postId) => {
@@ -47,5 +47,5 @@ $.loadCommentsForPost = () => {
 }
 
 $(document).ready(function() {
-    $.loadCommentsForPost()
+    loadCommentsForPost()
 })

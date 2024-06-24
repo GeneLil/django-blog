@@ -21,6 +21,7 @@ $(document).ready(function() {
             success: (comment) => {                               
                 $(addCommentInput).val("").attr("value", '')
                 renderComment(comment)
+                $.showToast("Comment added", "commentAdded")
             },
             error: (error) => {
                 console.log(error)

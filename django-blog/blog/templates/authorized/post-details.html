@@ -17,19 +17,11 @@
                     </div>
                 </div>
                 <div class="post-image"><img src="{{ post.image.url }}"></div>
-                <p class="post-body">{{ post.body }}</p>
-                <form method="post" action="/like/{{ post.id }}">
-                    {% csrf_token %}                
-                    <button class="like-button" type="submit">
-                        {% if is_liked %}
-                            <span>Unlike the post</span>&nbsp;&nbsp;
-                            <i class="bi bi-star-fill"></i>
-                        {% else %}
-                            <span>Like the post</span>&nbsp;&nbsp;
-                            <i class="bi bi-star"></i>
-                        {% endif %}
-                        </button>                
-                </form>
+                <p class="post-body">{{ post.body }}</p>                
+                <button class="like-button" type="button">                                                            
+                    <i class="bi bi-heart"></i>
+                    <span class="total-likes"></span>                
+                </button>                                
                 <div class="post-footer">                
                     <div class="post-tags">
                         <span>Tags: </span>

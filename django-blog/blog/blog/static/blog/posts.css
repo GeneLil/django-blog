@@ -145,8 +145,12 @@
     text-align: right;
 }
 .like-button {
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
+    border: 2px solid #F1ECEB;
+    border-radius: 4px;
+    height: 38px;
+    max-width: 120px;
+}
+.bi-heart::before, 
+.bi-heart-fill::before {
+    color: #EA5DAF;
 }

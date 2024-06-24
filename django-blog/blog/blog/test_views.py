@@ -47,9 +47,8 @@ class LikeViewTest(TestCase):
     def test_like_is_created(self):
         """Test creation of Like instance"""
         self.client.login(username='john', password='12345')
-        path = reverse('like-post', kwargs={'post_id': 1})
-        response = self.client.post(path)
-        self.assertEqual(response.status_code, 302)
+        path = reverse('like')
+        self.client.post(path, data={ 'post_id': 1 })        
         like = Like.objects.get(post_id=1, user_id=1)
         self.assertEqual(like.user.pk, 1)
         self.assertEqual(like.post.pk, 1)
@@ -131,20 +130,17 @@ class PostViewTest(TestCase):
     def test_post_is_liked_by_user(self):
         """Test if post is correctly liked by user"""
         self.client.login(username='john', password='12345')
-        path = reverse('like-post', kwargs={'post_id': 1})
-        self.client.post(path)
-
-        path = reverse('post-details', kwargs={'pk': 1})
-        response = self.client.get(path)
-        self.assertEqual(response.context['is_liked'], True)
+        path = reverse('like')
+        response = self.client.post(path, data={'post_id': 1})
+        self.assertJSONEqual(str(response.content, encoding='utf8'), { 'post_id': '1', 'is_liked': True })
 
     def test_show_posts_liked_by_user(self):
         """Test that url shows posts liked by user"""
         self.client.login(username='john', password='12345')
-        like_1 = reverse('like-post', kwargs={'post_id': 1})
-        self.client.post(like_1)
-        like_2 = reverse('like-post', kwargs={'post_id': 2})
-        self.client.post(like_2)
+        like_1 = reverse('like')
+        self.client.post(like_1, data={'post_id': 1})
+        like_2 = reverse('like')
+        self.client.post(like_2, data={'post_id': 2})
 
         posts_path = reverse('posts')
         response = self.client.get(posts_path)
