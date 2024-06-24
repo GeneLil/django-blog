@@ -1,9 +1,7 @@
 """Module for new comment view"""
-import json
 from django.views.generic import TemplateView
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect
-from .forms import NewCommentForm
 from .models import Comment, Post, UserProfile
 
 

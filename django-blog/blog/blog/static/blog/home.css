@@ -5,6 +5,9 @@ html {
  main {
     min-height: 100%;
  }
+ .toast-container {
+   position: fixed;
+ }
  .not-logged-in-page {
     align-items: center;
     height: 100vh;
