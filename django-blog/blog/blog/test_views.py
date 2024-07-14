@@ -4,7 +4,10 @@ from django.test import TestCase, Client
 from django.urls import reverse
 from django.core.files.uploadedfile import SimpleUploadedFile
 from accounts.models import CustomUser
-from .models import Post, Like, Comment, Tag
+from .models import Like
+from post.models import Post
+from tag.models import Tag
+from comments.models import Comment
 
 
 class HomePageViewTest(TestCase):

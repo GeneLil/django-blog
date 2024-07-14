@@ -1,6 +1,9 @@
 """Module for admin panel"""
 from django.contrib import admin
-from .models import Post, Tag, Comment, Like, UserProfile
+from comments.models import Comment
+from post.models import Post
+from .models import Like, UserProfile
+from tag.models import Tag
 
 
 @admin.register(Tag)

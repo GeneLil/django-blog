@@ -19,13 +19,12 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .view_single_post import SinglePostView
-from .view_post import PostsView
-from .view_posts_by_tag import PostsByTag
-from .view_tags import TagsView, get_all_tags
-from .view_comment import CommentView
+from post.views import PostsView
+from tag.views import TagsView, get_all_tags
+from comments.views import CommentView
 from .view_like import LikeView
 from .view_user_profile import UserProfileView
-from .view_home import home_view
+from .views import home_view, PostsByTag
 
 urlpatterns = [
     path('admin/', admin.site.urls),
