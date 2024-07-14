@@ -1,7 +1,7 @@
 """Module for forms"""
 from datetime import date
 from django import forms
-from .models import Post, Tag, Comment, UserProfile
+from .models import Post, UserProfile
 
 
 class NewPostForm(forms.ModelForm):
@@ -19,32 +19,6 @@ class NewPostForm(forms.ModelForm):
                                           'id': 'body'}),
             'tags': forms.CheckboxSelectMultiple(attrs={'class': 'form-check-input', 
                                                         'value': ''})
-        }
-
-
-class NewTagForm(forms.ModelForm):
-    """Class for new tag form"""
-    class Meta:
-        """Meta class for new tag form"""
-        model = Tag
-        fields = ['title']
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control',
-                                            'placeholder': '',
-                                            'id': 'title'}),         
-        }
-
-
-class NewCommentForm(forms.ModelForm):
-    """Class for new comment form"""
-    class Meta:
-        """Meta class for new comment form"""
-        model = Comment
-        fields = ['body']
-        widgets = {
-            'body': forms.Textarea(attrs={'class': 'form-control',
-                                          'placeholder': '',
-                                          'id': 'body'}),
         }
 
 
