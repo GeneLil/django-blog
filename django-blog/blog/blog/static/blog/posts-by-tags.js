@@ -3,7 +3,7 @@ $(document).ready(() => {
 
     if (postsByTagsSelector) {
         $(postsByTagsSelector).on("change", (event) => {                        
-            window.location.href = "/posts/by-tag/" + event.currentTarget.value
+            window.location.href = "/posts-by-tag/" + event.currentTarget.value
         })
     }    
 })

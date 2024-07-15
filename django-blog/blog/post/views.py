@@ -2,7 +2,7 @@
 from django.http import HttpRequest
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
-from blog.models import Like
+from like.models import Like
 from tag.models import Tag
 from comments.models import Comment
 from comments.forms import NewCommentForm

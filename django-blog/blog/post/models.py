@@ -13,7 +13,7 @@ class Post(models.Model):
     modified_at = models.DateTimeField(auto_now_add=False, null=True)
     image = models.ImageField(upload_to="media")
     liked_by = models.ManyToManyField(CustomUser, related_name='liked_by')
-    tags = models.ManyToManyField(Tag, related_name='posts')
+    tags = models.ManyToManyField(Tag, related_name='posts', blank=True)
 
     def __str__(self):
         return str(self.pk)

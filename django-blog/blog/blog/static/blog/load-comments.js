@@ -15,7 +15,7 @@ const loadCommentsForPost = () => {
     const loadCommentsQuery = (postId) => {
         $.ajax({
             type: "GET",
-            url: "/comments/",
+            url: "/comments",
             data: {
                 post_id: postId,
             },

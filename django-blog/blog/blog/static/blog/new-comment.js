@@ -13,7 +13,7 @@ $(document).ready(function() {
     const newCommentQuery = (postId, body) => {
         $.ajax({
             type: "POST",
-            url: "/comments/new/",
+            url: "/comments/new",
             data: { 
                 post_id: postId, 
                 body 

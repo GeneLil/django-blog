@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'post',
     'comments',
     'tag',
+    'like',
+    'user_profile',
+    'posts_by_tag',
 ]
 
 MIDDLEWARE = [
