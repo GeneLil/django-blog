@@ -20,11 +20,9 @@ from django.conf.urls.static import static
 from django.conf import settings
 from .view_single_post import SinglePostView
 from post.views import PostsView
-from tag.views import TagsView, get_all_tags
-from comments.views import CommentView
-from .view_like import LikeView
-from .view_user_profile import UserProfileView
-from .views import home_view, PostsByTag
+from like.views import LikeView
+from user_profile.views import UserProfileView
+from .views import home_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,13 +31,9 @@ urlpatterns = [
     path("posts/new/", SinglePostView.as_view(), name="new-post"),
     path("like/", LikeView.as_view(), name="like"),    
     path("posts/<int:pk>/edit", SinglePostView.as_view(), name="edit-post"),
-    path("comments/", CommentView.as_view(), name="all-comments"),
-    path("comments/new/", CommentView.as_view(), name="new-comment"),
-    path("tags/all-tags", get_all_tags, name='get-all-tags'),
-    path("tags/", TagsView.as_view(), name="tags"),
-    path("tags/new", TagsView.as_view(), name="new-tag"),
-    path("posts/by-tag", PostsByTag.as_view(), name='posts-by-tag-post'),
-    path('posts/by-tag/<int:pk>', PostsByTag.as_view(), name='posts-by-tag-get'),
+    path("comments/", include('comments.urls')),
+    path("tags/", include('tag.urls')),    
+    path("posts-by-tag/", include('posts_by_tag.urls')),    
     path("user-profile/", UserProfileView.as_view(), name="user-profile"),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),

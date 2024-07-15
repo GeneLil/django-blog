@@ -2,7 +2,8 @@
 from django.contrib import admin
 from comments.models import Comment
 from post.models import Post
-from .models import Like, UserProfile
+from like.models import Like
+from user_profile.models import UserProfile
 from tag.models import Tag
 
 

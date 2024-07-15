@@ -43,7 +43,7 @@ $(document).ready(() => {
     const getAllTagsQuery = () => {
         $.ajax({
             type: "GET",
-            url: "/tags/all-tags",
+            url: "/tags/all",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             success: (data) => {          

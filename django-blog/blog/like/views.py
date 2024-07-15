@@ -2,7 +2,8 @@
 from django.views.generic import TemplateView
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect
-from .models import Like, Post
+from .models import Like
+from post.models import Post
 
 
 class LikeView(TemplateView):

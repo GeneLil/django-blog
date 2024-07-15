@@ -3,7 +3,7 @@ from datetime import datetime
 from django.http import HttpRequest
 from django.views.generic import TemplateView
 from django.shortcuts import render, redirect
-from .models import Post
+from post.models import Post
 from .forms import NewPostForm
 
 
@@ -20,12 +20,14 @@ def create_post(request: HttpRequest, form: NewPostForm):
         short_description = make_short_description(body[:400])
     image = form.cleaned_data.get('image')
     author = request.user
-    tags = form.cleaned_data.get('tags')
+    tags = form.cleaned_data.get('tags')    
     post = Post(title=title, body=body, short_description=short_description,
                 image=image,
                 author=author)
     post.save()
-    post.tags.set(tags)
+    
+    if tags is not None:
+        post.tags.set(tags)
 
 def update_post(form: NewPostForm, primary_key: str):
     """Method for updating post"""
@@ -75,9 +77,9 @@ class SinglePostView(TemplateView):
                 else:
                     return render(request, template_name=self.edit_post_template, context={'form': form})
             else:                
-                if form.is_valid():                                     
+                if form.is_valid():                                
                     create_post(request, form)
                     return redirect('posts')
-                else:
+                else:                 
                     return render(request, template_name=self.edit_post_template, context={'form': form})
         return redirect('home')

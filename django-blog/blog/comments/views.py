@@ -2,7 +2,8 @@
 from django.views.generic import TemplateView
 from django.http import HttpRequest, JsonResponse
 from django.shortcuts import redirect
-from blog.models import Post, UserProfile
+from post.models import Post
+from user_profile.models import UserProfile
 from comments.models import Comment
 
 
@@ -41,6 +42,7 @@ class CommentView(TemplateView):
                 comment = Comment(author=author, post=post, body=body)
                 comment.save()
                 user_profile = UserProfile.objects.get(user_id=author.pk)
+                
                 response = {
                     'id': comment.pk,
                     'username': user_profile.user.username,
