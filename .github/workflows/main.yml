@@ -15,6 +15,8 @@ jobs:
         run: pip install -r requirements.txt # Install the dependencies (if needed)
   
       - name: Run Django tests
+        env: 
+          SECRET_KEY: z4k(_--9o10ee$6)bn+zd8gis0^mi_cj3dvn=q=o-c6q#$61tf
         run: |           
           cd django-blog/blog
           python manage.py test . # run pytest test
