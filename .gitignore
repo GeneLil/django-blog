@@ -4,6 +4,9 @@
 *.pyc
 django_blog/blog/blog/__pycache__
 media
+db.sqlite3
+Lib/
+Scripts/
 
 # Backup files # 
 *.bak 
